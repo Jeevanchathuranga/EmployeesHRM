@@ -27,11 +27,18 @@ namespace EmployeesHRM
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddHttpClient<IEmployeeDataService, EmployeeDataService>(
-                client =>
-                {
+            services.AddHttpClient<IEmployeeDataService, EmployeeDataService>(client =>
+            {
                     client.BaseAddress = new Uri("https://localhost:44350");
-                });
+            });
+            services.AddHttpClient<ICountryDataService, CountryDataService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44350");
+            });
+            services.AddHttpClient<IJobCategoryDataService, JobCategoryDataService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44350");
+            });
             services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
         }
 
